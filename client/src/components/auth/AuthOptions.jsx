@@ -6,8 +6,6 @@ function AuthOptions() {
   const { userData, setUserData } = useContext(UserContext);
   const history = useHistory();
 
-  const register = () => history.push("/register");
-  const login = () => history.push("/login");
   const guestList = () => history.push("/guest/list");
   const logout = () => {
     setUserData({

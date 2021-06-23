@@ -1,11 +1,8 @@
 import React, {
   Component,
-  useContext,
   useEffect,
   useState,
 } from "react";
-import { useHistory } from 'react-router-dom'
-import UserContext from "../../context/userContext";
 import ReactTable from "react-table";
 import api from "../../api";
 import "react-table/react-table.css";
@@ -45,7 +42,6 @@ function GuestList() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (!userData.user) history.push("/login");
     async function getGuestData() {
         try {
             setIsLoading(true);
