@@ -1,11 +1,11 @@
 
 const mongoose = require('mongoose')
-
 mongoose
-    .connect('mongodb+srv://vscodetodo_user:D9qKLE2wVBH2R68b@vscodetodo.nsbh7.mongodb.net/wedding-site?retryWrites=true&w=majority', 
+    .connect(process.env.MONGODB_CONNECTION_STRING, 
 	{ 
 		useNewUrlParser: true,
-		useUnifiedTopology: true
+		useUnifiedTopology: true,
+		useCreateIndex: true
  	})
 	.then(console.log())
     .catch(e => {

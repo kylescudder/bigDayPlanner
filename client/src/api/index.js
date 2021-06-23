@@ -1,7 +1,7 @@
 import axios from 'axios'
-
 const api = axios.create({
-    baseURL: 'http://localhost:5000/wedding/api',
+    baseURL: `${process.env.REACT_APP_API_URI}/wedding/api`
+})
 })
 
 export const insertGuest = payload => api.post(`/guest`, payload)
