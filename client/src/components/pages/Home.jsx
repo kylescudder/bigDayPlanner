@@ -12,7 +12,7 @@ function Home () {
 
     }, []);
     return (
-        <div>
+        <div className="body">
             {userData.user ? (
                 <h1>Welcome {userData.user.displayName}</h1>
             ) : (

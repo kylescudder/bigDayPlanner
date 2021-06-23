@@ -7,7 +7,7 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import UserContext from './context/userContext';
 import './App.css';
-import GuestList from './components/auth/GuestList';
+import GuestList from './components/pages/GuestList';
 
 function App() {
   const [ userData, setUserData] = useState({
@@ -22,9 +22,9 @@ function App() {
         localStorage.setItem("auth-token", "");
         token = "";
       }
-      const tokenResponse = await axios.post('http://localhost:5000/users/tokenIsValid', null, {headers: {"x-auth-token": token}});
+      const tokenResponse = await axios.post(`http://localhost:5000/wedding/api/users/tokenIsValid`, null, {headers: {"x-auth-token": token}});
       if (tokenResponse.data) {
-        const userRes = await axios.get("http://localhost:5000/users/", {
+        const userRes = await axios.get(`http://localhost:5000/wedding/api/users/`, {
           headers: { "x-auth-token": token },
         });
         setUserData({

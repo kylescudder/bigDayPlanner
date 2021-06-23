@@ -1,47 +1,84 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import UserContext from "../../context/userContext";
 import ErrorNotice from "../../components/misc/ErrorNotice";
 
-function Login () {
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
-    const [error, setError] = useState();
+function Login() {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [error, setError] = useState();
 
-    const { setUserData } = useContext(UserContext);
-    const history = useHistory();
+  const { setUserData } = useContext(UserContext);
+  const history = useHistory();
 
-    const submit = async (e) => {
-        e.preventDefault();
-        try{
-            const loginUser = {email, password};
-            const loginResponse = await axios.post("http://localhost:5000/users/login", loginUser);
-            setUserData({
-                token: loginResponse.data.token,
-                user: loginResponse.data.user
-            });
-            localStorage.setItem("auth-token", loginResponse.data.token);
-            history.push("/");
-        } catch(err) {
-            err.response.data.msg && setError(err.response.data.msg)
-        }
-        
-    };
-    
-    return (
-        <div className="login">
-            <h2>Login</h2>
-            {error && <ErrorNotice message={error} clearError={() => setError(undefined)} />}
-            <form onSubmit={submit}>
-                <label>Email: </label>
-                <input type="email" id="email" onChange={e => setEmail(e.target.value)}/>
-                <label>Password: </label>
-                <input type="password" id="password" onChange={e => setPassword(e.target.value)}/>
-                <input type="submit" value="Login" className="btn btn-primary" />
-            </form>
+  const submit = async (e) => {
+    e.preventDefault();
+    try {
+      const loginUser = { email, password };
+      const loginResponse = await axios.post(
+        "http://localhost:5000/wedding/api/users/login",
+        loginUser
+      );
+      setUserData({
+        token: loginResponse.data.token,
+        user: loginResponse.data.user,
+      });
+      localStorage.setItem("auth-token", loginResponse.data.token);
+      history.push("/");
+    } catch (err) {
+      err.response.data.msg && setError(err.response.data.msg);
+    }
+  };
+
+  return (
+    <section id="cover" className="min-vh-100">
+      <div id="cover-caption">
+        <div className="container">
+          <div className="row text-white">
+            <div className="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+              <h1 className="display-4 py-2 text-truncate">Login</h1>
+              <div className="px-2">
+                {error && (
+                  <ErrorNotice
+                    message={error}
+                    clearError={() => setError(undefined)}
+                  />
+                )}
+                <form onSubmit={submit} className="justify-content-center">
+                  <div className="form-group">
+                    <label className="sr-only">Email: </label>
+                    <input
+                      type="email"
+                      id="email"
+                      className="form-control"
+                      placeholder="Jane Doe"
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="sr-only">Password: </label>
+                    <input
+                      type="password"
+                      id="password"
+                      className="form-control"
+                      placeholder="jane.doe@example.com"
+                      onChange={(e) => setPassword(e.target.value)}
+                    />
+                  </div>
+                  <input
+                    type="submit"
+                    value="Login"
+                    className="btn btn-primary btn-lg"
+                  />
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-    );
+      </div>
+    </section>
+  );
 }
- 
+
 export default Login;
