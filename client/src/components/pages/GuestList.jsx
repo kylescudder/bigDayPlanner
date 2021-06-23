@@ -104,11 +104,9 @@ function GuestList() {
     },
   ];
   let showTable = true;
-//   if (!guests.length) {
-//     showTable = false;
-//   }
-  const { userData } = useContext(UserContext);
-  const history = useHistory();
+  if (!guests.length) {
+    showTable = false;
+  }
 
   return (
     <div>
