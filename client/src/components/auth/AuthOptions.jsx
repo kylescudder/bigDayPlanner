@@ -8,13 +8,14 @@ function AuthOptions() {
 
   const register = () => history.push("/register");
   const login = () => history.push("/login");
-  const guestList = () => history.push("/guests/list");
+  const guestList = () => history.push("/guest/list");
   const logout = () => {
     setUserData({
       token: undefined,
       user: undefined,
     });
     localStorage.setItem("auth-token", "");
+    history.push('/login')
   };
 
   return (
@@ -36,16 +37,17 @@ function AuthOptions() {
           </div>
         </section>
       ) : (
-        <section>
-          <div className="float-right">
-            <button className="btn btn-primary mr-2" onClick={register}>
-              Sign Up
-            </button>
-            <button className="btn btn-primary mr-2" onClick={login}>
-              Login
-            </button>
-          </div>
-        </section>
+        <></>
+        // <section>
+        //   <div className="float-right">
+        //     <button className="btn btn-primary mr-2" onClick={register}>
+        //       Sign Up
+        //     </button>
+        //     <button className="btn btn-primary mr-2" onClick={login}>
+        //       Login
+        //     </button>
+        //   </div>
+        // </section>
       )}
     </nav>
   );

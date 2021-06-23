@@ -21,7 +21,7 @@ function Register () {
         try{
             const newUser = {email, password, passwordCheck, displayName};
             await axios.post("http://localhost:5000/users/register", newUser);
-            const loginResponse = await axios.post("http://localhost:5000/users/login", {
+            const loginResponse = await axios.post("http://localhost:5000/wedding/api/users/login", {
                 email, password
             });
             setUserData({
