@@ -102,18 +102,18 @@ getGuestById = async (req, res) => {
 }
 
 getGuests = async (req, res) => {
-        await Guest.find({}, (err, guests) => {
-            if (err) {
-                return res.status(400).json({ success: false, error: err })
-            }
-            if (!guests.length) {
-                return res
-                    .status(404)
-                    
-                    .json({ success: false, error: `Guest not found` })
-            }
-            return res.status(200).json({ success: true, data: guests })
-        }).catch(err => console.log(err))
+    await Guest.find({}, (err, guests) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+        if (!guests.length) {
+            return res
+                .status(404)
+                
+                .json({ success: false, error: `Guest not found` })
+        }
+        return res.status(200).json({ success: true, data: guests })
+    }).catch(err => console.log(err))
 }
 
 module.exports = {
