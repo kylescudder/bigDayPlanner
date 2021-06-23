@@ -18,19 +18,21 @@ export const getGuestById = id => api.get(`/guest/${id}`, {
     headers: { "x-auth-token": localStorage.getItem("auth-token") }
 })
 
-export const insertGuest = payload => api.post(`/guest`, payload)
-export const getAllGuests = () => api.get(`/guest`)
-export const updateGuestById = (id, payload) => api.put(`/guest/${id}`, payload)
-export const deleteGuestById = id => api.delete(`/guest/${id}`)
-export const getGuestById = id => api.get(`/guest/${id}`)
-
+export const tokenIsValid = () => api.post(`/users/tokenIsValid`)
+export const getUser = () => api.get(`/users/`)
+export const loginUser = (payload) => api.post(`users/login`, payload)
+export const registerUser = (payload) => api.post(`users/register`, payload)
 
 const apis = {
     insertGuest,
     getAllGuests,
     updateGuestById,
     deleteGuestById,
-    getGuestById
+    getGuestById,
+    tokenIsValid,
+    getUser,
+    loginUser,
+    registerUser
 }
 
 export default apis

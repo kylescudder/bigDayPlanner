@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/userContext";
 import ErrorNotice from "../../components/misc/ErrorNotice";
+import api from "../../api";
 
 function Login() {
   const [email, setEmail] = useState();
@@ -15,10 +16,7 @@ function Login() {
     e.preventDefault();
     try {
       const loginUser = { email, password };
-      const loginResponse = await axios.post(
-        "http://localhost:5000/wedding/api/users/login",
-        loginUser
-      );
+      const loginResponse = await api.loginUser(loginUser)
       setUserData({
         token: loginResponse.data.token,
         user: loginResponse.data.user,
