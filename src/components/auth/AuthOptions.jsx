@@ -15,7 +15,7 @@ function AuthOptions() {
     localStorage.setItem("auth-token", "");
     history.push('/login')
   };
-
+  //const register = () => history.push("/register");
   return (
     <nav className="auth-options">
       {userData.user ? (
@@ -35,12 +35,13 @@ function AuthOptions() {
           </div>
         </section>
       ) : (
-        <></>
+        <>
+          {/*<button className="btn btn-primary mr-2" onClick={register}>
+            Sign Up
+          </button>*/}
+        </>
         // <section>
         //   <div className="float-right">
-        //     <button className="btn btn-primary mr-2" onClick={register}>
-        //       Sign Up
-        //     </button>
         //     <button className="btn btn-primary mr-2" onClick={login}>
         //       Login
         //     </button>

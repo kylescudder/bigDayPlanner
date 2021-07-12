@@ -1,12 +1,9 @@
 import React, {useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Header from './components/layout/Header';
-import Home from './components/pages/Home';
-import Register from './components/auth/Register';
-import Login from './components/auth/Login';
 import UserContext from './context/userContext';
 import './App.css';
-import GuestList from './components/pages/GuestList';
+import Routes from './Routes'
 import api from './api'
 function App() {
   const [ userData, setUserData] = useState({
@@ -38,17 +35,12 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <UserContext.Provider value={{ userData, setUserData }}>
-        <Header />
-        <Switch>
-          <Route exact path="/guest/list" component={GuestList} />
-          <Route exact path="/" component={Home} />
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
-        </Switch>
-        </UserContext.Provider>
-    </BrowserRouter>
+      <BrowserRouter>
+        <UserContext.Provider value={{ userData, setUserData }}>
+          <Header />
+          <Routes />
+          </UserContext.Provider>
+      </BrowserRouter>
   );
 }
 

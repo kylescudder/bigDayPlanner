@@ -1,6 +1,6 @@
 import axios from 'axios'
 const api = axios.create({
-    baseURL: `${process.env.REACT_APP_API_URI}/wedding/api`
+    baseURL: `${process.env.REACT_APP_API_URI}`
 })
 export const insertGuest = payload => api.post(`/guest`, payload, {
     headers: { "x-auth-token": localStorage.getItem("auth-token") }
@@ -18,10 +18,12 @@ export const getGuestById = id => api.get(`/guest/${id}`, {
     headers: { "x-auth-token": localStorage.getItem("auth-token") }
 })
 
-export const tokenIsValid = () => api.post(`/users/tokenIsValid`)
-export const getUser = () => api.get(`/users/`)
-export const loginUser = (payload) => api.post(`users/login`, payload)
-export const registerUser = (payload) => api.post(`users/register`, payload)
+export const tokenIsValid = () => api.post(`/user/tokenIsValid`)
+export const getUser = () => api.get(`/user`, {
+    headers: { "x-auth-token": localStorage.getItem("auth-token") }
+})
+export const loginUser = (payload) => api.post(`/user/login`, payload)
+export const registerUser = (payload) => api.post(`/user/register`, payload)
 
 const apis = {
     insertGuest,
