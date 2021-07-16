@@ -31,14 +31,8 @@ class GuestInsert extends Component {
     const { forename, surname, guestGroupID } = this.state;
     const payload = { forename, surname, guestGroupID };
 
-    await api.insertGuest(payload).then((res) => {
-      window.alert(`Guest inserted successfully`);
-      this.setState({
-        forename: "",
-        surname: "",
-        guestGroupID: "",
-      });
-    });
+    const response = await api.insertGuest(payload);
+        window.location.href = `/guest/update/${response.data.id}`;
   };
 
   render() {
