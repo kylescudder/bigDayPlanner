@@ -48,20 +48,18 @@ const addGuest = (event) => {
 
   window.location.href = `/guest/add`;
 };
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function getGuestData() {
-        try {
-            setIsLoading(true);
-          const res = await api.getAllGuests();
-          const data = res.data.data
-          setGuests(data);
-          setIsLoading(false);
-          setGuests(data);
-          setIsLoading(false);      
-        } catch (err) {
-          history.push('/')
-        }
+      try {
+        const res = await api.getAllGuests();
+        const data = res.data.data;
+        setGuests(data);
+        setIsLoading(false);
+      } catch (err) {
+        window.location.href = `/login`;
+      }
     }
 
     getGuestData();
