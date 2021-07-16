@@ -5,14 +5,18 @@ import UserContext from "../../context/userContext";
 function AuthOptions() {
   const { userData, setUserData } = useContext(UserContext);
   const history = useHistory();
-
-  const guestList = () => history.push("/guest/list");
+  const guests = () => {
+    history.push("/guest/list");
+  };
   const logout = () => {
     setUserData({
       token: undefined,
       user: undefined,
     });
     localStorage.setItem("auth-token", "");
+    history.push("/login");
+  };
+  const login = () => {
     history.push('/login')
   };
   return (
