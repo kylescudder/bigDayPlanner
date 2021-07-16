@@ -43,6 +43,11 @@ class DeleteGuest extends Component {
       const [guests, setGuests] = useState([]);
       const [isLoading, setIsLoading] = useState(true);
       const history = useHistory()
+const addGuest = (event) => {
+  event.preventDefault();
+
+  window.location.href = `/guest/add`;
+};
 
   useEffect(() => {
     async function getGuestData() {
@@ -113,15 +118,35 @@ class DeleteGuest extends Component {
 
   return (
     <div>
-      {showTable && (
-        <ReactTable
-          data={guests}
-          columns={columns}
-          loading={isLoading}
-          defaultPageSize={10}
-          showPageSizeOptions={true}
-          minRows={0}
-        />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div>
+          <div className="row">
+            <div className="col">
+              <div
+                className="btn btn-success float-right mb-2"
+                onClick={addGuest}
+              >
+                Add Guest
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              {showTable && (
+                <ReactTable
+                  data={guests}
+                  columns={columns}
+                  loading={isLoading}
+                  defaultPageSize={10}
+                  showPageSizeOptions={true}
+                  minRows={0}
+                />
+              )}
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
