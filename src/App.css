@@ -7,6 +7,10 @@
   align-items:center;
   justify-content: space-between;
   background-color: #322f4d;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .header a{
   color: #fff;
@@ -45,4 +49,27 @@ form:before {
   background-color: rgba(0,0,0,0.3);
   z-index: -1;
   border-radius: 10px;
+}
+.btn-update {
+  color: #ef9b0f;
+  cursor: pointer;
+}
+
+.btn-delete {
+  color: #ff0000;
+  cursor: pointer;
+}
+.labelMargin {
+  margin: 5px;
+}
+.marginRemover {
+  margin-left: -15px !important;
+  margin-right: -15px !important;
+}
+.container-fluid {
+  margin-top: 10px;;
+}
+.loginImage {
+    margin-top: -10px;
+  min-height: calc(100vh - 55px) !important;
 }
