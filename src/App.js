@@ -1,10 +1,10 @@
 import React, {useState, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import Header from './components/layout/Header';
 import UserContext from './context/userContext';
 import './App.css';
 import Routes from './Routes'
 import api from './api'
+
 function App() {
   const [ userData, setUserData] = useState({
     token: undefined,
@@ -18,17 +18,19 @@ function App() {
         localStorage.setItem("auth-token", "");
         token = "";
       }
-      const tokenResponse = await api.tokenIsValid();
-
-      if (tokenResponse.data) {
-        console.log(tokenResponse.data)
-        const userRes = await api.getUser() 
-        console.log(userRes.data)
-        setUserData({
-          token,
-          user: userRes.data,
-        });
+      try {
+        const tokenResponse = await api.tokenIsValid();
+        if (tokenResponse.data) {
+          const userRes = await api.getUser() 
+          setUserData({
+            token,
+            user: userRes.data,
+          });
+        }
+      } catch (err) {
+        console.log(err)
       }
+
     }
 
     checkLoggedIn();
@@ -37,7 +39,6 @@ function App() {
   return (
       <BrowserRouter>
         <UserContext.Provider value={{ userData, setUserData }}>
-          <Header />
           <Routes />
           </UserContext.Provider>
       </BrowserRouter>
