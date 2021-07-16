@@ -1,53 +1,54 @@
-import React, {
-  Component,
-  useEffect,
-  useState,
-} from "react";
-import ReactTable from "react-table"
-import api from "../../api"
-import "react-table/react-table.css"
-import { useHistory } from "react-router-dom"
-
+import React, { Component, useEffect, useState } from "react";
+import ReactTable from "react-table";
+import api from "../../api";
+import "react-table/react-table.css";
+import Loading from "../misc/Loading";
 
 class UpdateGuest extends Component {
   updateUser = (event) => {
     event.preventDefault();
-    
+
     window.location.href = `/guest/update/${this.props.id}`;
   };
-  
+
   render() {
-    return <div onClick={this.updateUser}>Update</div>;
+    return (
+      <div className="btn-update" onClick={this.updateUser}>
+        Update
+      </div>
+    );
   }
 }
 
 class DeleteGuest extends Component {
   deleteUser = (event) => {
     event.preventDefault();
-    
+
     if (
       window.confirm(
         `Do tou want to delete the guest ${this.props.id} permanently?`
-        )
-        ) {
-          api.deleteGuestById(this.props.id);
-          window.location.reload();
-        }
-      };
-      
-      render() {
-        return <div onClick={this.deleteUser}>Delete</div>;
-      }
+      )
+    ) {
+      api.deleteGuestById(this.props.id);
+      window.location.reload();
     }
-    function GuestList() {
-      const [guests, setGuests] = useState([]);
-      const [isLoading, setIsLoading] = useState(true);
-      const history = useHistory()
+  };
+
+  render() {
+    return (
+      <div className="btn-delete" onClick={this.deleteUser}>
+        Delete
+      </div>
+    );
+  }
+}
 const addGuest = (event) => {
   event.preventDefault();
 
   window.location.href = `/guest/add`;
 };
+function GuestList() {
+  const [guests, setGuests] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
