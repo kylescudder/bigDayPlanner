@@ -50,6 +50,18 @@ form:before {
   z-index: -1;
   border-radius: 10px;
 }
+.btn-update {
+  color: #ef9b0f;
+  cursor: pointer;
+}
+
+.btn-delete {
+  color: #ff0000;
+  cursor: pointer;
+}
+.labelMargin {
+  margin: 5px;
+}
 .marginRemover {
   margin-left: -15px !important;
   margin-right: -15px !important;
