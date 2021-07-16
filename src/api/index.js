@@ -18,7 +18,9 @@ export const getGuestById = id => api.get(`/guest/${id}`, {
     headers: { "x-auth-token": localStorage.getItem("auth-token") }
 })
 
-export const tokenIsValid = () => api.post(`/user/tokenIsValid`)
+export const tokenIsValid = () => api.post(`/user/tokenIsValid`, null, {
+    headers: { "x-auth-token": localStorage.getItem("auth-token") }
+})
 export const getUser = () => api.get(`/user`, {
     headers: { "x-auth-token": localStorage.getItem("auth-token") }
 })
