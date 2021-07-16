@@ -2,35 +2,45 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/userContext";
 import ErrorNotice from "../../components/misc/ErrorNotice";
+import Loading from "../misc/Loading";
 import api from "../../api";
 
 function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
 
   const submit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     try {
       const loginUser = { email, password };
-      const loginResponse = await api.loginUser(loginUser)
-       
+      const loginResponse = await api.loginUser(loginUser);
+
       setUserData({
         token: loginResponse.data.token,
         user: loginResponse.data.user,
       });
       localStorage.setItem("auth-token", loginResponse.data.token);
+      setIsLoading(false);
       history.push("/");
     } catch (err) {
-      err.response.data.msg && setError(err.response.data.msg);
+      setIsLoading(false);
+      if (typeof err.response === 'undefined') {
+        setError('Server unresponsive');
+        return false;
+      } else {
+        err.response.data.msg && setError(err.response.data.msg);
+      }
     }
   };
 
   return (
-    <section id="cover" className="min-vh-100">
+    <section id="cover" className="loginImage marginRemover">
       <div id="cover-caption">
         <div className="container">
           <div className="row text-white">
@@ -64,11 +74,19 @@ function Login() {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
-                  <input
-                    type="submit"
-                    value="Login"
-                    className="btn btn-primary btn-lg"
-                  />
+                  {isLoading ? (
+                    <input
+                      type="submit"
+                      value="loading..."
+                      className="btn btn-primary btn-lg"
+                    />
+                  ) : (
+                    <input
+                      type="submit"
+                      value="Login"
+                      className="btn btn-primary btn-lg"
+                    />
+                  )}
                 </form>
               </div>
             </div>
