@@ -7,7 +7,7 @@ class Header extends Component {
     render() { 
         return ( 
             <header className="header">
-                <Link to="/"><h1 className="title">BigDay Planner</h1></Link>
+                <Link to="/"><h1 className="title">BigDayPlanner</h1></Link>
                 <AuthOptions />
             </header>
          );
