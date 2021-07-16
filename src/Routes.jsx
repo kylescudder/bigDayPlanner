@@ -5,10 +5,12 @@ import Login from './components/auth/Login'
 import Home from './components/pages/Home'
 import GuestList from "./components/pages/GuestList";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Header from "./components/layout/Header";
 
 function Routes() {
   return (
     <Router>
+      <Header />
         <Switch>
           <Route exact path="/guest/list" component={GuestList} />
 					<Route exact path="/" component={Home} />
