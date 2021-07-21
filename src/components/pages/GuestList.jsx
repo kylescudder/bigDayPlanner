@@ -47,6 +47,7 @@ const addGuest = (event) => {
 
   window.location.href = `/guest/add`;
 };
+
 function GuestList() {
   const [guests, setGuests] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -56,6 +57,13 @@ function GuestList() {
       try {
         const res = await api.getAllGuests();
         const data = res.data.data;
+        data.forEach(element => {
+          if (element.attending === false) {
+            element.attending = 'No'
+          } else {
+            element.attending = 'Yes'
+          }
+        });
         setGuests(data);
         setIsLoading(false);
       } catch (err) {
@@ -75,6 +83,23 @@ function GuestList() {
     {
       Header: "Forename",
       accessor: "forename",
+      filterable: true,
+    },
+    {
+      getProps: (state, rowInfo) => {
+        if (rowInfo && rowInfo.row) {
+          return {
+            style: {
+              background: rowInfo.row.attending === "Yes" ? "lightgreen" : 'lightpink',
+              color: rowInfo.row.attending === "Yes" ? "green" : 'red',
+            },
+          };
+        } else {
+          return {};
+        }
+      },
+      Header: "Attending",
+      accessor: "attending",
       filterable: true,
     },
     {

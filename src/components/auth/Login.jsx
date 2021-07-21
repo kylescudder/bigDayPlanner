@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/userContext";
 import ErrorNotice from "../../components/misc/ErrorNotice";
-import Loading from "../misc/Loading";
 import api from "../../api";
 
 function Login() {
