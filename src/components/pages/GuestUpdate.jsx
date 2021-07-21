@@ -13,6 +13,9 @@ class GuestUpdate extends Component {
       forename: "",
       surname: "",
       guestGroupID: "",
+      starter: "",
+      mainCourse: "",
+      attending: false,
       isLoading: true,
     };
   }
@@ -62,11 +65,13 @@ class GuestUpdate extends Component {
     try {
       const { id } = this.state;
       const guest = await api.getGuestById(id);
-      console.log(guest);
       this.setState({
         forename: guest.data.data.forename,
         surname: guest.data.data.surname,
         guestGroupID: guest.data.data.guestGroupID,
+        starterText: guest.data.data.starterText,
+        mainCourseText: guest.data.data.mainCourseText,
+        attending: guest.data.data.attending
       });
       this.setState({ isLoading: false });
     } catch (err) {
@@ -75,7 +80,15 @@ class GuestUpdate extends Component {
   };
 
   render() {
-    const { forename, surname, guestGroupID, isLoading } = this.state;
+    const {
+      forename,
+      surname,
+      guestGroupID,
+      starterText,
+      mainCourseText,
+      attending,
+      isLoading,
+    } = this.state;
     return (
       <div>
         {isLoading ? (
@@ -91,6 +104,17 @@ class GuestUpdate extends Component {
                 <a className="btn btn-primary float-right" href={"/guest/list"}>
                   Back to guests
                 </a>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-4 offset-4">
+              {attending ? (
+                <div class="alert alert-success text-center" role="alert">
+                  Attending!
+                </div>
+              ) : (
+                  <></>
+                )}
               </div>
             </div>
             <div className="row">
@@ -135,6 +159,36 @@ class GuestUpdate extends Component {
                   type="number"
                   value={guestGroupID}
                   onChange={this.handleChangeInputGuestGroupID}
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <label className="labelMargin">Starter</label>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <input
+                  className="form-control"
+                  type="text"
+                  disabled="disabled"
+                  value={starterText}
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <label className="labelMargin">Main Course</label>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <input
+                  className="form-control"
+                  type="text"
+                  disabled="disabled"
+                  value={mainCourseText}
                 />
               </div>
             </div>
