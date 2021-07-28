@@ -9,6 +9,7 @@ class GuestInsert extends Component {
       forename: "",
       surname: "",
       guestGroupID: "",
+      receptionOnly: false,
     };
   }
 
@@ -27,16 +28,20 @@ class GuestInsert extends Component {
 
     this.setState({ guestGroupID });
   };
+  handleChangeInputReceptionOnly = async (event) => {
+    const receptionOnly = event.target.value;
+    this.setState({ receptionOnly });
+  };
   handleIncludeGuest = async () => {
-    const { forename, surname, guestGroupID } = this.state;
-    const payload = { forename, surname, guestGroupID };
+    const { forename, surname, guestGroupID, receptionOnly } = this.state;
+    const payload = { forename, surname, guestGroupID, receptionOnly };
 
     const response = await api.insertGuest(payload);
-        window.location.href = `/guest/update/${response.data.id}`;
+    window.location.href = `/guest/update/${response.data.id}`;
   };
 
   render() {
-    const { forename, surname, guestGroupID } = this.state;
+    const { forename, surname, guestGroupID, receptionOnly } = this.state;
     return (
       <div className="form-group">
         <div className="row">
@@ -91,6 +96,21 @@ class GuestInsert extends Component {
               type="number"
               value={guestGroupID}
               onChange={this.handleChangeInputGuestGroupID}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <div className="margin: 5px">Reception Only</div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <input
+              className="form-control"
+              type="checkbox"
+              value={receptionOnly}
+              onChange={this.handleChangeInputCeceptionOnly}
             />
           </div>
         </div>

@@ -67,9 +67,109 @@ form:before {
   margin-right: -15px !important;
 }
 .container-fluid {
-  margin-top: 10px;;
+  margin-top: 10px;
 }
 .loginImage {
-    margin-top: -10px;
+  margin-top: -10px;
   min-height: calc(100vh - 55px) !important;
+}
+.guestHeaderBG {
+  background-image: url("images/backgroundHeader.jpg");
+  height: 10vh !important;
+}
+.headerText {
+  font-size: 50pt;
+  font-family: 'didot';
+  color: white  
+}
+.nav-link {
+  font-size: 25pt;
+  color: black !important;
+}
+.navbar-expand-lg .navbar-nav .nav-link {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+  font-family: 'didot';
+}
+ @font-face {
+  font-family: didot;
+  src: url(fonts/Didot\ Regular.ttf);
+} 
+#guestCover {
+  background: #222 url("images/backgroundLayer.jpg") center center no-repeat;
+  background-size: cover;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: -95px;
+  z-index: -1;
+}
+.headerLogo {
+  width: 20vw;
+  height:20vh;
+}
+.headerContainer {
+  height: 200px;
+  position: relative;
+}
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.landingImage {
+  background-image: url(images/backgroundHeader.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  -moz-animation:fadeOut 1s;
+  -moz-animation-delay:3s;
+  -moz-animation-fill-mode:forwards;
+  animation:fadeOut 1s;
+  animation-delay:3s;
+  animation-fill-mode:forwards;
+}
+@-moz-keyframes fadeOut {
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:0;
+    }
+}
+@keyframes fadeOut {
+    from {
+        opacity:1;
+    }
+    to {
+        opacity:0;
+    }
+}
+@-moz-keyframes fadeIn {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+.fadeIn {
+  -moz-animation:fadeIn 1s;
+  -moz-animation-fill-mode:forwards;
+  animation:fadeIn 1s;
+  animation-fill-mode:forwards;
 }

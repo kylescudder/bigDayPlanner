@@ -3,6 +3,8 @@ import api from "../../api";
 import Loading from "../misc/Loading";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import QRCode from "react-qr-code";
+import CryptoJS from "crypto-js";
 
 class GuestUpdate extends Component {
   constructor(props) {
@@ -15,7 +17,11 @@ class GuestUpdate extends Component {
       guestGroupID: "",
       starter: "",
       mainCourse: "",
+      dietaryNote: "",
+      songArtist: "",
+      songName: "",
       attending: false,
+      receptionOnly: false,
       isLoading: true,
     };
   }
@@ -35,17 +41,21 @@ class GuestUpdate extends Component {
 
     this.setState({ guestGroupID });
   };
-
+  handleChangeInputReceptionOnly = async (event) => {
+    const receptionOnly = event.target.value;
+    this.setState({ receptionOnly });
+  };
   handleUpdateGuest = async () => {
     try {
-      const { id, forename, surname, guestGroupID } = this.state;
-      const payload = { forename, surname, guestGroupID };
+      const { id, forename, surname, guestGroupID, receptionOnly } = this.state;
+      const payload = { forename, surname, guestGroupID, receptionOnly };
 
       await api.updateGuestById(id, payload);
       this.setState({
         forename: payload.forename,
         surname: payload.surname,
         guestGroupID: payload.guestGroupID,
+        receptionOnly: payload.receptionOnly,
       });
       toast.success("Saved successfully 👍", {
         position: "top-center",
@@ -71,7 +81,15 @@ class GuestUpdate extends Component {
         guestGroupID: guest.data.data.guestGroupID,
         starterText: guest.data.data.starterText,
         mainCourseText: guest.data.data.mainCourseText,
-        attending: guest.data.data.attending
+        dietaryNote: guest.data.data.dietaryNote,
+        songArtist: guest.data.data.songArtist,
+        songName: guest.data.data.songName,
+        attending: guest.data.data.attending,
+        receptionOnly: guest.data.data.receptionOnly,
+        qrCodeString:
+          process.env.REACT_APP_WEBSITE_URL +
+          "/guest/guestGroupID/" +
+          guest.data.data.guestGroupID,
       });
       this.setState({ isLoading: false });
     } catch (err) {
@@ -86,7 +104,12 @@ class GuestUpdate extends Component {
       guestGroupID,
       starterText,
       mainCourseText,
+      dietaryNote,
+      songArtist,
+      songName,
       attending,
+      receptionOnly,
+      qrCodeString,
       isLoading,
     } = this.state;
     return (
@@ -108,11 +131,11 @@ class GuestUpdate extends Component {
             </div>
             <div className="row">
               <div className="col-4 offset-4">
-              {attending ? (
-                <div class="alert alert-success text-center" role="alert">
-                  Attending!
-                </div>
-              ) : (
+                {attending ? (
+                  <div class="alert alert-success text-center" role="alert">
+                    Attending!
+                  </div>
+                ) : (
                   <></>
                 )}
               </div>
@@ -164,6 +187,21 @@ class GuestUpdate extends Component {
             </div>
             <div className="row">
               <div className="col">
+                <label className="labelMargin">Reception only: </label>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <input
+                  className="form-control"
+                  type="checkbox"
+                  value={receptionOnly}
+                  onChange={this.handleChangeInputreceptionOnly}
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
                 <label className="labelMargin">Starter</label>
               </div>
             </div>
@@ -189,6 +227,61 @@ class GuestUpdate extends Component {
                   type="text"
                   disabled="disabled"
                   value={mainCourseText}
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <label className="labelMargin">Dietary Note</label>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <input
+                  className="form-control"
+                  type="text"
+                  disabled="disabled"
+                  value={dietaryNote}
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <label className="labelMargin">Song Artist</label>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <input
+                  className="form-control"
+                  type="text"
+                  disabled="disabled"
+                  value={songArtist}
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <label className="labelMargin">Song Name</label>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <input
+                  className="form-control"
+                  type="text"
+                  disabled="disabled"
+                  value={songName}
+                />
+              </div>
+            </div>
+            <div className="row mt-4">
+              <div className="col">
+                <QRCode
+                  value={qrCodeString}
+                  bgColor="red"
+                  fgColor="black"
+                  size="256"
                 />
               </div>
             </div>

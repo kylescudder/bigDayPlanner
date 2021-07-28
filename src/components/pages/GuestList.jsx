@@ -29,7 +29,10 @@ class DeleteGuest extends Component {
         `Do tou want to delete the guest ${this.props.id} permanently?`
       )
     ) {
-      api.deleteGuestById(this.props.id);
+      deleteGuest(this.props.id)
+    }
+    async function deleteGuest(id) {
+      await api.deleteGuestById(id);
       window.location.reload();
     }
   };
@@ -158,15 +161,27 @@ function GuestList() {
           </div>
           <div className="row">
             <div className="col">
-              {showTable && (
-                <ReactTable
-                  data={guests}
-                  columns={columns}
-                  loading={isLoading}
-                  defaultPageSize={10}
-                  showPageSizeOptions={true}
-                  minRows={0}
-                />
+              {!guests.length ? (
+                <div>
+                  <div class="card">
+                    <div class="card-body">
+                      Please add some guests
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  {showTable && (
+                    <ReactTable
+                      data={guests}
+                      columns={columns}
+                      loading={isLoading}
+                      defaultPageSize={10}
+                      showPageSizeOptions={true}
+                      minRows={0}
+                    />
+                  )}
+                </div>
               )}
             </div>
           </div>
