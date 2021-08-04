@@ -21,7 +21,7 @@ class GuestLanding extends Component {
             alt="flowers are pretty"
           />
         </div>
-        <div className="col-6 d-none d-sm-block">
+        <div className="col-6 d-none d-sm-block otherInfoBodyText">
           <h1>
             <OtherInfoText />
           </h1>
@@ -30,18 +30,18 @@ class GuestLanding extends Component {
           <p>
             <OtherInfoText />
           </p>
-          <div className="row d-block d-sm-none">
+          <div className="row d-sm-none">
             <div className="col">
               <img
                 src={imageLeft}
-                className="otherInfoImage"
+                className="otherInfoImageMobile"
                 alt="flowers are pretty"
               />
             </div>
             <div className="col">
               <img
                 src={imageRight}
-                className="otherInfoImage"
+                className="otherInfoImageMobile imgRightMobile"
                 alt="flowers are pretty"
               />
             </div>
@@ -50,7 +50,7 @@ class GuestLanding extends Component {
         <div className="col-3 d-none d-sm-block">
           <img
             src={imageRight}
-            className="otherInfoImage"
+            className="otherInfoImage imgRight"
             alt="flowers are pretty"
           />
         </div>

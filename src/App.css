@@ -95,6 +95,10 @@ form:before {
   font-family: didot;
   src: url(fonts/Didot\ Regular.ttf);
 } 
+ @font-face {
+  font-family: gilSans;
+  src: url(fonts/Didot\ Regular.ttf);
+} 
 #guestCover {
   background: #222 url("images/backgroundLayer.jpg") center center no-repeat;
   background-size: cover;
@@ -176,7 +180,6 @@ form:before {
   animation-fill-mode:forwards;
 }
 .otherInfoImage {
-  width: 40vw;
   bottom: 0;
   display: block;
   position: fixed;
@@ -186,4 +189,19 @@ form:before {
 }
 body {
     background: #222 url("images/backgroundLayer.jpg") center center no-repeat;
+}
+.imgRight {
+  right: 0;
+}
+.otherInfoImageMobile {
+  bottom: 0;
+  display: block;
+  position: fixed;
+  width: 15vw;
+}
+.imgRightMobile {
+  right: 5vw;
+}
+.otherInfoBodyText {
+  margin-top: 10vh;
 }
