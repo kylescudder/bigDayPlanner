@@ -4,7 +4,6 @@ import Loading from "../misc/Loading";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import QRCode from "react-qr-code";
-import CryptoJS from "crypto-js";
 
 class GuestUpdate extends Component {
   constructor(props) {

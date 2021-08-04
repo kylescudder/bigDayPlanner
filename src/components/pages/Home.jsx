@@ -11,7 +11,7 @@ function Home() {
     if (userData.user) {
       setIsLoading(false);
     }
-  }, []);
+  }, [userData]);
   const history = useHistory();
   const submit = async (e) => {
     e.preventDefault();
