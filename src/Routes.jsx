@@ -23,7 +23,7 @@ function Routes() {
           <Route exact path="/" component={Home} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
-          <Route path="/guest/guestLanding/:id" component={GuestLanding} />
+          <Route path="/guestLanding/:id" component={GuestLanding} />
           <Route path="/OtherInfo" component={OtherInfo} />
         </Switch>
       </div>

@@ -1,6 +1,9 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
+import imageLeft from '../../images/otherInfoLeft.png'
+import imageRight from "../../images/otherInfoRight.png"
+import OtherInfoText from './partialPages/otherInfoText.jsx'
 
-class GuestLanding extends Component {
+class GuestLanding extends Component {  
   constructor(props) {
     super(props);
 
@@ -10,19 +13,47 @@ class GuestLanding extends Component {
 
   render() {
     return (
-      <div>
-        <section id="guestCover" className="loginImage marginRemover">
-          <div id="cover-caption">
-            <h2>
-              We would like our special day to be an adult only occasion. We
-              hope you can join us in celerbrating our marriage! Please know
-              that all we really want for our wedding day is for you to be there
-              to celerbrate with us, but if you would like to give us something,
-              a contribution towards *blank* would be really appreciated. Dress
-              code: Formal (Black Tie optional)
-            </h2>
+      <div className="row m-0 mt-5 text-center">
+        <div className="col-3 d-none d-sm-block">
+          <img
+            src={imageLeft}
+            className="otherInfoImage"
+            alt="flowers are pretty"
+          />
+        </div>
+        <div className="col-6 d-none d-sm-block">
+          <h1>
+            <OtherInfoText />
+          </h1>
+        </div>
+        <div className="col-12 d-block d-sm-none">
+          <p>
+            <OtherInfoText />
+          </p>
+          <div className="row d-block d-sm-none">
+            <div className="col">
+              <img
+                src={imageLeft}
+                className="otherInfoImage"
+                alt="flowers are pretty"
+              />
+            </div>
+            <div className="col">
+              <img
+                src={imageRight}
+                className="otherInfoImage"
+                alt="flowers are pretty"
+              />
+            </div>
           </div>
-        </section>
+        </div>
+        <div className="col-3 d-none d-sm-block">
+          <img
+            src={imageRight}
+            className="otherInfoImage"
+            alt="flowers are pretty"
+          />
+        </div>
       </div>
     );
   }
