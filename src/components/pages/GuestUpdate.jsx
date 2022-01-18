@@ -87,7 +87,7 @@ class GuestUpdate extends Component {
         receptionOnly: guest.data.data.receptionOnly,
         qrCodeString:
           process.env.REACT_APP_WEBSITE_URL +
-          "/guest/guestGroupID/" +
+          "/guestLanding/" +
           guest.data.data.guestGroupID,
       });
       this.setState({ isLoading: false });
