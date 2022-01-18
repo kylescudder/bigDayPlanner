@@ -134,7 +134,7 @@ class GuestUpdate extends Component {
             <div className="row">
               <div className="col-4 offset-4">
                 {attending ? (
-                  <div class="alert alert-success text-center" role="alert">
+                  <div className="alert alert-success text-center" role="alert">
                     Attending!
                   </div>
                 ) : (

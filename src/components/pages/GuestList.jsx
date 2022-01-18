@@ -163,8 +163,8 @@ function GuestList() {
             <div className="col">
               {!guests.length ? (
                 <div>
-                  <div class="card">
-                    <div class="card-body">
+                  <div className="card">
+                    <div className="card-body">
                       Please add some guests
                     </div>
                   </div>

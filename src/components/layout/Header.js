@@ -36,8 +36,8 @@ class Header extends Component {
                         <header className="header guestHeaderBG">
                             <Row>
                                 <Col>
-                                    <div class="headerContainer">
-                                        <div class="vertical-center">
+                                    <div className="headerContainer">
+                                        <div className="vertical-center">
                                                 <img src={headerLogo} className="headerLogo" alt="KS/RB Logo" />
                                         </div>
                                     </div>
