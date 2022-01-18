@@ -35,18 +35,7 @@ function AuthOptions() {
           </div>
         </section>
       ) : (
-        //<>
-        //  {/*<button className="btn btn-primary mr-2" onClick={register}>
-        //    Sign Up
-        //  </button>*/}
-        //</>
-        <section>
-          <div className="float-right">
-            <button className="btn btn-primary mr-2" onClick={login}>
-              Login
-            </button>
-          </div>
-        </section>
+          <div></div>
       )}
     </nav>
   );
