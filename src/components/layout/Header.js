@@ -12,11 +12,11 @@ class Header extends Component {
       adminLogin: false,
     };
   }
-    componentDidCatch() {
-        if (document.location.href.indexOf('guestGroupID') === -1){ 
+    componentDidMount() {
+        if (document.location.href.indexOf('admin') > -1) {
             this.setState({
                 adminLogin: true,
-            });
+            }); 
         }
         
     }
