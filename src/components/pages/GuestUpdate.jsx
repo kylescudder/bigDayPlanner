@@ -66,7 +66,7 @@ class GuestUpdate extends Component {
         progress: undefined,
       });
     } catch (err) {
-      window.location.href = `/login`;
+      window.location.href = `/admin/login`;
     }
   };
 
@@ -92,7 +92,7 @@ class GuestUpdate extends Component {
       });
       this.setState({ isLoading: false });
     } catch (err) {
-      window.location.href = `/login`;
+      window.location.href = `/admin/login`;
     }
   };
 
@@ -123,7 +123,10 @@ class GuestUpdate extends Component {
                 <div className="h1">Update Guest Details</div>
               </div>
               <div className="col">
-                <a className="btn btn-primary float-right" href={"/guest/list"}>
+                <a
+                  className="btn btn-primary float-right"
+                  href={"/admin/guest/list"}
+                >
                   Back to guests
                 </a>
               </div>

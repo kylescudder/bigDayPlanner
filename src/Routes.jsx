@@ -17,12 +17,12 @@ function Routes() {
       <Header />
       <div className="container-fluid">
         <Switch>
-          <Route exact path="/guest/list" component={GuestList} />
-          <Route exact path="/guest/add" component={GuestInsert} />
-          <Route exact path="/guest/update/:id" component={GuestUpdate} />
+          <Route exact path="/admin/guest/list" component={GuestList} />
+          <Route exact path="/admin/guest/add" component={GuestInsert} />
+          <Route exact path="/admin/guest/update/:id" component={GuestUpdate} />
           <Route exact path="/" component={Home} />
           <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
+          <Route path="/admin/login" component={Login} />
           <Route path="/guestLanding/:id" component={GuestLanding} />
           <Route path="/OtherInfo" component={OtherInfo} />
         </Switch>

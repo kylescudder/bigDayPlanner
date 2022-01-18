@@ -37,7 +37,7 @@ class GuestInsert extends Component {
     const payload = { forename, surname, guestGroupID, receptionOnly };
 
     const response = await api.insertGuest(payload);
-    window.location.href = `/guest/update/${response.data.id}`;
+    window.location.href = `/admin/guest/update/${response.data.id}`;
   };
 
   render() {
@@ -49,7 +49,10 @@ class GuestInsert extends Component {
             <div className="h1">Create Guest</div>
           </div>
           <div className="col">
-            <a className="btn btn-primary float-right" href={"/guest/list"}>
+            <a
+              className="btn btn-primary float-right"
+              href={"/admin/guest/list"}
+            >
               Back to guests
             </a>
           </div>

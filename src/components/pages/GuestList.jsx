@@ -8,7 +8,7 @@ class UpdateGuest extends Component {
   updateUser = (event) => {
     event.preventDefault();
 
-    window.location.href = `/guest/update/${this.props.id}`;
+    window.location.href = `/admin/guest/update/${this.props.id}`;
   };
 
   render() {
@@ -48,7 +48,7 @@ class DeleteGuest extends Component {
 const addGuest = (event) => {
   event.preventDefault();
 
-  window.location.href = `/guest/add`;
+  window.location.href = `/admin/guest/add`;
 };
 
 function GuestList() {
@@ -70,7 +70,7 @@ function GuestList() {
         setGuests(data);
         setIsLoading(false);
       } catch (err) {
-        window.location.href = `/login`;
+        window.location.href = `/admin/login`;
       }
     }
 
