@@ -27,16 +27,21 @@ export const getUser = () => api.get(`/user`, {
 export const loginUser = (payload) => api.post(`/user/login`, payload)
 export const registerUser = (payload) => api.post(`/user/register`, payload)
 
+export const getGuestGroup = () => api.get(`/getGuestGroup`, {
+    headers: { guestGroupID: localStorage.getItem("guestGroupID") },
+})
+
 const apis = {
-    insertGuest,
-    getAllGuests,
-    updateGuestById,
-    deleteGuestById,
-    getGuestById,
-    tokenIsValid,
-    getUser,
-    loginUser,
-    registerUser
-}
+  insertGuest,
+  getAllGuests,
+  updateGuestById,
+  deleteGuestById,
+  getGuestById,
+  tokenIsValid,
+  getUser,
+  loginUser,
+  registerUser,
+  getGuestGroup,
+};
 
 export default apis

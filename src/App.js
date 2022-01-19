@@ -36,6 +36,13 @@ function App() {
             landingImage.classList.add('d-none');
             const siteContent = document.querySelector('.siteContent')
             siteContent.classList.add('fadeIn');
+            const id = document.location.href.split('/')
+            if (Number.isInteger(parseInt(id[id.length - 1]))) {
+              localStorage.setItem("guestGroupID", id[id.length - 1].toString())
+                window.location.href = `/`;
+            } else {
+              alert('invalid id')
+            }
           }, 4000);
         }
       } catch (err) {
