@@ -1,37 +1,32 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/userContext";
-import Loading from '../misc/Loading'
+import Loading from "../misc/Loading";
 import api from "../../api";
 
 function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const { userData } = useContext(UserContext);
-  
+  const [guestData, setGuestData] = useState([]);
+
   useEffect(() => {
-    if (userData.user) {
-      setIsLoading(false);
-    }
-    if (localStorage.getItem('guestGroupID') != null) {
-      setIsLoading(false)
-      getGuestGroup()
-    }
     async function getGuestGroup() {
       try {
+        if (userData.user) {
+          setIsLoading(false);
+        }
         const res = await api.getGuestGroup();
-        const data = res.data.data;
-        const nameList = document.getElementById('lblNameList')
-        data.forEach((element) => {
-          nameList.innerHTML += element.Name;
-        });
-        console.log(nameList)
+        setGuestData(res.data.data);
         setIsLoading(false);
       } catch (err) {
+        console.log(err);
         window.location.href = `/admin/login`;
       }
     }
 
-  }, [userData]);
+    getGuestGroup();
+  }, []);
+
   const history = useHistory();
   const submit = async (e) => {
     e.preventDefault();
@@ -47,8 +42,31 @@ function Home() {
           {isLoading ? (
             <Loading />
           ) : (
-            <div>
-              <h1>Welcome {userData.user.displayName}</h1>
+            <div className="row">
+              <div className="col">
+                <h1 className="homeHeader">Welcome </h1>
+                {guestData.map((guest, index) => {
+                  if (guestData.length === 1) {
+                    return (
+                      <h1 className="homeHeader">{guest.forename}</h1>
+                    );
+                  } else {
+                    if (index === guestData.length - 1) {
+                      return (
+                        <h1 className="homeHeader">and {guest.forename} </h1>
+                      );
+                    } else {
+                      if (index !== 0) {
+                        return <h1 className="homeHeader">, {guest.forename} </h1>;
+                      } else {
+                        return (
+                          <h1 className="homeHeader">{guest.forename}</h1>
+                        );
+                      }
+                    }
+                  }
+                })}
+              </div>
             </div>
           )}
         </div>
